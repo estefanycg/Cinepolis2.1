@@ -21,6 +21,8 @@ namespace Cinepolis.Views
         public int idHorario;
         public int pelicula;
         public float total;
+        public int cantidadAsientos;
+
         public float precio { get; set; }
         public string titulo { get; set; }
         public string duracion { get; set; }
@@ -165,7 +167,8 @@ namespace Cinepolis.Views
 
             // Actualizamos el contenido del label con los asientos seleccionados
             asientosArreglo.Text = string.Join(", ", asientosSeleccionados);
-
+            cantidadAsientos = asientosSeleccionados.Count;
+            asientosPrecioTotal.Text = "L. " + (cantidadAsientos * precio).ToString();
 
 
         }

@@ -580,14 +580,14 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Primer label alineado a la izquierda -->
-                <Label Grid.Column="0" Text="Total L. (ISV incluido)" 
+                <Label Grid.Column="0" Text="Total (ISV incluido)" 
                        TextColor="#3b5998"
                        VerticalOptions="Center" 
                        HorizontalOptions="Start" />
 
                 <!-- Segundo label alineado a la derecha -->
                 <Label Grid.Column="1"
-                       Text="{Binding precio}"
+                       x:Name="asientosPrecioTotal"
                        FontAttributes="Bold"
                        TextColor="#3b5998"
                        VerticalOptions="Center" 
@@ -595,7 +595,7 @@
             </Grid>
 
 
-            <StackLayout Margin="30,0,30,20">
+            <StackLayout Margin="30,0,30,10">
                 <Label Text="Asientos: "  FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                 <Label x:Name="asientosArreglo" FontSize="12" Text=""  HorizontalOptions="Center"/>
             </StackLayout>
