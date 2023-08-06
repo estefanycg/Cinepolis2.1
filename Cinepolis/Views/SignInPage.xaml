@@ -1,0 +1,57 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepolis.SignInPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <ffimageloading:SvgCachedImage Source="cinepolis.svg" HeightRequest="100" WidthRequest="100" VerticalOptions="Center" />
+                <BoxView Color="#000" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+                <Label Text="Iniciar sesión en su cuenta de creación" TextColor="Black" FontSize="16" HorizontalOptions="Center" />
+                
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="usu.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry x:Name="correo" Placeholder="Correo electrónico" Style="{StaticResource EntryStyle}" />
+
+
+                    </StackLayout>
+                </Frame>
+                
+                
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="pass.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry Placeholder="Contraseña" IsPassword="True" Style="{StaticResource EntryStyle}" x:Name="passwordEntry"/>
+
+                        <ffimageloading:SvgCachedImage Source="{Binding EyeImageSource}" HeightRequest="20" WidthRequest="20" VerticalOptions="Center">
+                            <ffimageloading:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TogglePasswordVisibility" />
+                            </ffimageloading:SvgCachedImage.GestureRecognizers>
+                        </ffimageloading:SvgCachedImage>
+                    </StackLayout>
+                </Frame>
+                <StackLayout HorizontalOptions="End">
+                <Label Text="¿Olvidaste tu contraseña?" TextColor="Black" FontSize="16" HorizontalOptions="Center" Margin="0,0,0,10">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ForgotPasswordClicked" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <Button Text="Iniciar sesión" BackgroundColor="#152567" TextColor="White" WidthRequest="200" HeightRequest="60" CornerRadius="30" Clicked="SignInButtonClicked"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="2">
+                <Label Text="Si aún no tienes una cuenta" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="0,0,0,30" />
+                <Label Text="Inscríbete aquí" FontSize="16" TextColor="Black" VerticalOptions="Center" Margin="0,0,0,30" FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignUpLinkClicked" />
+                    </Label.GestureRecognizers>
+                    <Label.TextDecorations>
+                        <TextDecorations>Underline</TextDecorations>
+                    </Label.TextDecorations>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

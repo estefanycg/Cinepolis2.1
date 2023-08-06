@@ -1,0 +1,122 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" mc:Ignorable="d"
+    x:Class="Cinepolis.Views.MovieViewPage">
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <!-- Row for the image with gradient and icon -->
+                <RowDefinition Height="*" />
+                <!-- Row for the movie name and details -->
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Row 1: Image with gradient and icon -->
+            <RelativeLayout Grid.Row="0">
+                <Image Source="{Binding Imagen}" Aspect="AspectFit" />
+                <!-- Cambiar AspectFill a AspectFit -->
+                <BoxView BackgroundColor="Transparent"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Constant=70}">
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="Black" Offset="0" />
+                            <GradientStop Color="Transparent" Offset="1" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+            </RelativeLayout>
+
+
+            <!-- Row 2: Movie name and details -->
+            <StackLayout Grid.Row="1" Margin="0,0,0,0">
+                <Label Text="{Binding Titulo}" BackgroundColor="#3b5998" TextColor="White" FontSize="18"
+                    FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+
+                <!-- Margen para separar el nombre de la película de los labels -->
+                <StackLayout Orientation="Horizontal" Spacing="20" Margin="30,5,30,0">
+                    <Label Text="{Binding Clasificacion}" HorizontalTextAlignment="Center" TextColor="#4f4f4f"
+                        FontSize="16" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+                    <Label Text="{Binding Duracion}" HorizontalTextAlignment="Center" TextColor="#4f4f4f" FontSize="16"
+                        HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+
+                    <Label Text="{Binding Genero}" HorizontalTextAlignment="Center" TextColor="#4f4f4f" FontSize="16"
+                        HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+                </StackLayout>
+
+                <!--Separador-->
+                <BoxView Grid.Row="2" HeightRequest="2" Margin="30,0,30,0" BackgroundColor="#D3D3D3"
+                    HorizontalOptions="FillAndExpand" VerticalOptions="End" />
+
+                <!--Sinopsis-->
+                <StackLayout Grid.Row="3" Margin="30,10,30,0">
+                    <Label Text="Sinopsis:" TextColor="#4f4f4f" FontSize="18" FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+                    <Label Text="{Binding Sinopsis}" TextColor="#4f4f4f" FontSize="16"
+                        HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                </StackLayout>
+
+                <!--Actores-->
+                <StackLayout Grid.Row="3" Margin="30,10,30,20">
+                    <Label Text="Actores:" TextColor="#4f4f4f" FontSize="18" FontAttributes="Bold"
+                        HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+
+                    <Label Text="{Binding Actores}" TextColor="#4f4f4f" FontSize="16" HorizontalOptions="StartAndExpand"
+                        VerticalOptions="Center" />
+                </StackLayout>
+
+                <!--Label con Texto Horarios-->
+                <Label Text="Horarios" BackgroundColor="#3b5998" TextColor="White" FontSize="18" FontAttributes="Bold"
+                    HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+
+                <ListView x:Name="confiteriaListView" Grid.Row="2" HasUnevenRows="True"
+                    ItemsSource="{Binding HorariosPelicula}">
+
+                    <!-- Plantilla personalizada para los elementos del ListView -->
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame CornerRadius="10" HasShadow="True" Margin="20,0,20,0">
+                                    <Grid Margin="10" RowSpacing="10">
+                                        <!-- Ajusta el margen y el RowSpacing aquí para dar más espacio entre los elementos -->
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Horario -->
+                                        <Frame Grid.Column="0" BackgroundColor="White" CornerRadius="15" Padding="10"
+                                            BorderColor="#3b5998" HasShadow="False">
+                                            <Label x:Name="HorarioLabel" Text="{Binding horainicio}" FontSize="18"
+                                                TextColor="#4f4f4f" VerticalOptions="CenterAndExpand" />
+                                        </Frame>
+
+                                        <!-- Sala -->
+                                        <Frame Grid.Column="1" BackgroundColor="White" CornerRadius="15" Padding="10"
+                                            BorderColor="#3b5998" HasShadow="False">
+                                            <Label x:Name="SalaLabel" Text="{Binding idsala}" FontSize="18"
+                                                TextColor="#4f4f4f" VerticalOptions="CenterAndExpand" />
+                                        </Frame>
+
+                                        <!-- Botón para seleccionar -->
+                                        <Button Grid.Column="2" Text="Seleccionar" Clicked="OnSeleccionarClicked"
+                                            BackgroundColor="#3b5998" TextColor="White" FontSize="14" CornerRadius="15"
+                                            Padding="10" CommandParameter="{Binding idhorario}">
+                                        </Button>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

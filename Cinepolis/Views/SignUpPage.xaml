@@ -1,0 +1,120 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepolis.SignUpPage"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Estilo personalizado para el Picker -->
+            <Style x:Key="CustomPickerStyle" TargetType="Picker">
+                <Setter Property="TitleColor" Value="Black" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <ffimageloading:SvgCachedImage Source="cinepolis.svg" HeightRequest="100" WidthRequest="300" VerticalOptions="Center" />
+                <BoxView Color="#000" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+                <Label Text="Crear una cuenta" TextColor="Black" FontSize="16" HorizontalOptions="Center" />
+            </StackLayout>
+            
+            <ScrollView>
+              <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                   
+                    <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="email.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry x:Name="correo" Placeholder="Correo electrónico" Style="{StaticResource EntryStyle}" />
+
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="dni.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry x:Name="dni" Placeholder="DNI" Style="{StaticResource EntryStyle}" />
+
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="usu.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry x:Name="nombre" Placeholder="Nombres" Style="{StaticResource EntryStyle}" />
+
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="usu.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry x:Name="apellido" Placeholder="Apellidos" Style="{StaticResource EntryStyle}" />
+
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="tel.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry x:Name="tel" Placeholder="Teléfono" Style="{StaticResource EntryStyle}" />
+
+                    </StackLayout>
+                </Frame>
+
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="cal.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <DatePicker x:Name="fechaNacimiento" Format="yyyy-MM-dd" Date="{Binding SelectedDate}" />
+                    </StackLayout>
+                </Frame>
+    
+                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                    <StackLayout Orientation="Horizontal" Spacing="5">
+                        <ffimageloading:SvgCachedImage Source="pass.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                        <Entry x:Name="contra" Placeholder="Contraseña" IsPassword="True" Style="{StaticResource EntryStyle}"/>
+                        <ffimageloading:SvgCachedImage Source="{Binding EyeImageSource}" HeightRequest="20" WidthRequest="20" VerticalOptions="Center">
+                            <ffimageloading:SvgCachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TogglePasswordVisibility" />
+                            </ffimageloading:SvgCachedImage.GestureRecognizers>
+                        </ffimageloading:SvgCachedImage>
+                    </StackLayout>
+                </Frame>
+                  
+                 <Frame Padding="5" Margin="0,10,0,10" HeightRequest="50" CornerRadius="5" HasShadow="True">
+                        <StackLayout Orientation="Horizontal" Spacing="5">
+                            <ffimageloading:SvgCachedImage Source="pass.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
+                            <Entry x:Name="contraConf" Placeholder="Confirmar Contraseña" IsPassword="True" Style="{StaticResource EntryStyle}" />
+                            <ffimageloading:SvgCachedImage Source="{Binding EyeImageSourceC}" HeightRequest="20" WidthRequest="20" VerticalOptions="Center">
+                                <ffimageloading:SvgCachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TogglePasswordVisibilityC" />
+                                </ffimageloading:SvgCachedImage.GestureRecognizers>
+                            </ffimageloading:SvgCachedImage>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Button Text="Crear cuenta" 
+                            BackgroundColor="#152567" 
+                            TextColor="White" 
+                            WidthRequest="300" 
+                            HeightRequest="60" 
+                            CornerRadius="30"
+                            Clicked ="RegistroButtonClicked"/>
+            </StackLayout>
+                  </ScrollView>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="2">
+                <Label Text="¿Ya tienes una cuenta?" TextColor="Black" FontSize="16" VerticalOptions="Center" Margin="0,0,0,30" />
+                <Label Text="Iniciar sesión" FontSize="16" TextColor="Black" VerticalOptions="Center" Margin="0,0,0,30" FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSignInLinkClicked" />
+                    </Label.GestureRecognizers>
+                    <Label.TextDecorations>
+                        <TextDecorations>Underline</TextDecorations>
+                    </Label.TextDecorations>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+    
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepolis.Views.ConfiteriaPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    
+
+    <!-- Definir estilos personalizados -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <!-- Estilo para el ListView -->
+            <Style TargetType="ListView">
+                <Setter Property="BackgroundColor" Value="LightGray" />
+                <Setter Property="SeparatorVisibility" Value="None" />
+            </Style>
+
+            <!-- Estilo para los elementos del ListView -->
+            <Style TargetType="ViewCell">
+            </Style>
+
+            <!-- Estilo para las etiquetas de precio -->
+            <Style TargetType="Label" x:Key="PrecioLabel">
+                <Setter Property="TextColor" Value="#152567" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <!-- Estilo para los botones personalizados -->
+            <Style TargetType="Button" x:Key="CantidadButtonStyle">
+                <Setter Property="WidthRequest" Value="40" />
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="BackgroundColor" Value="#152567" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+
+            <!-- Estilo para el número de cantidad -->
+            <Style TargetType="Label" x:Key="CantidadLabelStyle">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <!-- Cabecera con información de reclamación y ubicación -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <!-- Nueva fila para el apartado fijo -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+
+
+        <!-- Cabecera con información de reclamación y ubicación -->
+        <RelativeLayout Padding="10" BackgroundColor="White">
+            <!-- Icono de ubicación -->
+            <Image x:Name="ubicacionImage" Source="ubicacion.png" HeightRequest="30" WidthRequest="30"
+               RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=10}"
+               RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=10}" />
+
+            <!-- StackLayout para los textos "Reclamar en" y "Galerias del Valle" -->
+            <StackLayout Orientation="Vertical"
+                     RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ubicacionImage, Property=Width, Factor=1, Constant=10}"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=10}">
+                <!-- Texto "Reclamar en" -->
+                <Label Text="Reclamar en" FontSize="18" TextColor="Black" />
+
+                <!-- Texto "Galerias del Valle" -->
+                <Label Text="Galerias del Valle" FontSize="18" TextColor="Black" />
+            </StackLayout>
+        </RelativeLayout>
+
+        <!-- Título "Confiteria" -->
+        <StackLayout Grid.Row="1" Padding="10">
+            <Label Text="CONFITERIA" FontAttributes="Bold" FontSize="24" TextColor="Black" />
+        </StackLayout>
+
+        <!-- ListView con los productos -->
+        <ListView x:Name="confiteriaListView"
+          Grid.Row="2"
+          HasUnevenRows="True"
+          ItemsSource="{Binding ConfiteriaList}">
+
+            <!-- Plantilla personalizada para los elementos del ListView -->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame Margin="10" Padding="5" BackgroundColor="White" CornerRadius="5" HasShadow="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Agregar la imagen -->
+                                <Image Source="{Binding ImagenCargada}" HeightRequest="100" WidthRequest="100" Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" />
+
+                                <!-- StackLayout para el nombre y descripción -->
+                                <StackLayout Grid.Row="0" Grid.Column="1">
+                                    <!-- Nombre del producto -->
+                                    <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="20" TextColor="Black" />
+
+                                    <!-- Descripción del producto -->
+                                    <Label Text="{Binding Descripcion}" FontSize="16" TextColor="Black" />
+
+                                    <!-- Línea -->
+                                    <BoxView Color="gray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <!-- Columna para el precio -->
+                                            <ColumnDefinition Width="Auto" />
+                                            <!-- Columna para el botón "-" -->
+                                            <ColumnDefinition Width="Auto" />
+                                            <!-- Columna para el label de cantidad -->
+                                            <ColumnDefinition Width="Auto" />
+                                            <!-- Columna para el botón "+" -->
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- Estilo personalizado para el precio -->
+                                        <Label Text="{Binding Precio, StringFormat='Precio: L.{0:N2}'}" Style="{StaticResource PrecioLabel}" Grid.Row="0" Grid.Column="0" />
+
+                                        <!-- Botón "-" para disminuir la cantidad -->
+                                        <Button Text="-" Style="{StaticResource CantidadButtonStyle}" Command="{Binding DecrementCommand}" Grid.Row="0" Grid.Column="1" HorizontalOptions="FillAndExpand" />
+
+                                        <!-- Label que muestra la cantidad actual -->
+                                        <Label Text="{Binding Cantidad}" Style="{StaticResource CantidadLabelStyle}" Grid.Row="0" Grid.Column="2" />
+
+                                        <!-- Botón "+" para aumentar la cantidad -->
+                                        <Button Text="+" Style="{StaticResource CantidadButtonStyle}" Command="{Binding IncrementCommand}" Grid.Row="0" Grid.Column="3" HorizontalOptions="FillAndExpand" />
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <!-- Nueva fila para el apartado fijo -->
+        <StackLayout Grid.Row="3" Padding="10" BackgroundColor="white" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Source="carrito.png" HeightRequest="30" WidthRequest="30" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="CarritoIcon_Clicked" />
+                </Image.GestureRecognizers>
+            </Image>
+
+
+            <!-- Etiqueta para mostrar el total a pagar -->
+            <Label Text="Total a pagar:" FontSize="18" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+
+            <!-- Agrega aquí la lógica para mostrar el total a pagar (por ejemplo, mediante bindings) -->
+            <Label Text="{Binding Total, StringFormat='Total a pagar: L.{0:N2}'}" FontSize="18" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" />
+
+
+            <!-- Botón para pagar -->
+            <Button Text="Pagar" FontSize="18" HorizontalOptions="End" VerticalOptions="Center" Clicked="Button_Clicked" BackgroundColor="#152567" TextColor="White"/>
+        </StackLayout>
+
+    </Grid>
+
+
+</ContentPage>

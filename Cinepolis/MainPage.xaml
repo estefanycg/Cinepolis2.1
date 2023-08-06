@@ -1,0 +1,36 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:efx="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
+             x:Class="Cinepolis.Views.MainPage">
+
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand" Spacing="20">
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Frame WidthRequest="300" CornerRadius="10" BackgroundColor="Transparent" Padding="0" >
+                <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                    <ffimageloading:SvgCachedImage Source="cinepolis.svg" WidthRequest="300" Aspect="AspectFit" HorizontalOptions="End" Grid.Row="1"/>
+                        <Label Text="Bienvenido a"  TextColor="Black"  FontSize="24" HorizontalOptions="Center" Grid.Row="0" />
+                </Grid>
+            </Frame>
+            <BoxView Color="#000" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,0,0,20" />
+            <Button Text="Iniciar sesión" Clicked="OnSignInButtonClicked" BackgroundColor="#152567" TextColor="White" WidthRequest="200" HeightRequest="60" CornerRadius="30" Margin="0,0,0,10" />
+                <Button Text="Registrarse" Clicked="OnSignUpButtonClicked" BackgroundColor="White" TextColor="Black" WidthRequest="200" HeightRequest="60" CornerRadius="30" BorderColor="#152567" BorderWidth="2" Margin="0,0,0,20" />
+            </StackLayout>
+            <StackLayout VerticalOptions="End" HorizontalOptions="Center">
+                <Label Text="Continuar como invitado" FontSize="16" HorizontalOptions="Center" TextColor="Black" Margin="0,0,0,20" FontAttributes="Bold">
+                    <Label.TextDecorations>
+                        <TextDecorations>Underline</TextDecorations>
+                    </Label.TextDecorations>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CarteleraButtonClicked" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

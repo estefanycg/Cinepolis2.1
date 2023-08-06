@@ -1,0 +1,25 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepolis.Views.TerminosPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White"
+             Title="Términos y Condiciones">
+
+    <!-- Barra de color azul (Dashboard) -->
+    <Grid>
+        
+
+        <!-- Barra de color azul (Dashboard) -->
+       
+
+        <!-- Contenido de la página de términos y condiciones -->
+        <StackLayout Margin="20,60,20,0" VerticalOptions="FillAndExpand" Spacing="10" Padding="0,10,0,0">
+            <Label Text="Términos y Condiciones" FontSize="Title" TextColor="#152567" HorizontalOptions="CenterAndExpand" />
+
+            <!-- Aquí puedes agregar el texto completo de los términos y condiciones acerca de los pagos y la política de Cinepolís y sus propietarios -->
+            <Label Text="Con esto usted esta de acuerdo con la politica y Condiciones, y el contrato de uso de datos de la empresa  y el Cliente, Donde tambíen usted da fe, de que Cinepolis puede usar sus datos para mejoramiento de la Infraestructura   de la aplicacion y el manejo de la misma." TextColor="#152567" />
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

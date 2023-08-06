@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+	<size android:width="2dp" />
+	<solid android:color="#7283DE" />
+	<!-- Cambia este color al que desees (por ejemplo, #00FFFF es el color "aqua") -->
+</shape>

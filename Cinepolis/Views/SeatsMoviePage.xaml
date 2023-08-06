@@ -1,0 +1,617 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepolis.Views.SeatsMoviePage">
+    <ContentPage.Content>
+        <StackLayout Spacing="10" VerticalOptions="StartAndExpand">
+            <!-- Columna de la imagen -->
+            <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" Spacing="5" Margin="20,20,20,0">
+                <Image Source="{Binding imagen}" Aspect="AspectFit" HeightRequest="200" />
+                <!-- Ajusta el HeightRequest según tus necesidades -->
+
+                <!-- Columna de la información -->
+                <StackLayout VerticalOptions="StartAndExpand" Spacing="2">
+                    <Label Text="{Binding titulo}" FontAttributes="Bold" FontSize="18"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Duración:" FontAttributes="Bold" FontSize="15" />
+                        <Label Text="{Binding duracion}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Genero:" FontAttributes="Bold" FontSize="15" />
+                        <Label Text="{Binding genero}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Clasificación:" FontAttributes="Bold" FontSize="15" />
+                        <Label Text="{Binding clasificacion}" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Precio:" FontAttributes="Bold" FontSize="15" />
+                        <Label Text="{Binding precio}" />
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Fila para el recuadro gris y la simbología -->
+            <Grid BackgroundColor="LightGray" Padding="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Cuadrados de colores con descripción -->
+                <StackLayout Grid.Column="0" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <BoxView Color="#FFA500" WidthRequest="20" HeightRequest="20" CornerRadius="5" />
+                    <Label Text="Seleccionado" TextColor="Black" VerticalOptions="Center" Margin="5,0,0,0" />
+                </StackLayout>
+                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <BoxView Color="#FF0000" WidthRequest="20" HeightRequest="20" CornerRadius="5" />
+                    <Label Text="Ocupado" TextColor="Black" VerticalOptions="Center" Margin="5,0,0,0" />
+                </StackLayout>
+                <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <BoxView Color="#3b5998" WidthRequest="20" HeightRequest="20" CornerRadius="5" />
+                    <Label Text="Libre" TextColor="Black" VerticalOptions="Center" Margin="5,0,0,0" />
+                </StackLayout>
+            </Grid>
+
+            <Grid BackgroundColor="Transparent" Padding="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <!-- Columna para las letras -->
+                    <ColumnDefinition Width="1*" />
+                    <!-- Columna para los asientos -->
+                    <ColumnDefinition Width="8*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Fila para el rectángulo gris y la palabra "Pantalla" -->
+                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Vertical" VerticalOptions="Center">
+                    <BoxView BackgroundColor="DarkGray" WidthRequest="300" HeightRequest="6" HorizontalOptions="Center" />
+                    <Label Text="Pantalla" HorizontalOptions="Center" FontSize="15" TextColor="Black" />
+                </StackLayout>
+            </Grid>
+
+
+
+
+            <!-- Grid para los asientos y las letras -->
+            <Grid BackgroundColor="Transparent" Padding="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <!-- Columna para las letras -->
+                    <ColumnDefinition Width="1*" />
+                    <!-- Columna para los asientos -->
+                    <ColumnDefinition Width="8*" />
+                </Grid.ColumnDefinitions>
+
+
+
+                <!-- Fila A -->
+                <Label Grid.Column="0" Text="A" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="A1" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding A1}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding A1}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="A2" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding A2}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding A2}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="A3" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding A3}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding A3}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="A4" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding A4}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding A4}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="A5" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding A5}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding A5}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="A6" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding A6}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding A6}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+
+
+                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" InputTransparent="True" Margin="55,0,35,0" >
+                    <Label Text="1" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="2" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="3" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="4" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="5" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="6" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                </StackLayout>
+
+                <!-- Fila B -->
+                <Label Grid.Column="0" Grid.Row="1" Text="B" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="B1" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding B1}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding B1}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="B2" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding B2}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding B2}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="B3" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding B3}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding B3}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="B4" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding B4}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding B4}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="B5" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding B5}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding B5}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="B6" WidthRequest="26" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" FontSize="Micro" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding B6}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding B6}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+
+                <!--Numeración Fila B-->
+                <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" InputTransparent="True" Margin="55,0,35,0">
+                    <Label Text="1" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="2" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="3" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="4" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="5" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="6" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                </StackLayout>
+
+
+                <!-- Fila C -->
+                <Label Grid.Column="0" Grid.Row="2" Text="C" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="C1" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C1}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C1}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="C2" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked"  BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C2}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C2}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="C3" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked"  BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C3}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C3}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="C4" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked"  BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C4}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C4}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="C5" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked"  BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C5}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C5}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="C6" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C6}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C6}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="C7" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C7}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C7}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="C8" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding C8}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding C8}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+
+                <!--Numeración Fila C -->
+                <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" InputTransparent="True" Margin="55,0,35,0">
+                    <Label Text="1" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="2" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="3" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="4" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="5" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="6" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="7" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="8" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                </StackLayout>
+
+                <!-- Fila D -->
+                <Label Grid.Column="0" Grid.Row="3" Text="D" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="D1" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D1}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D1}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D2" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D2}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D2}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D3" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D3}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D3}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D4" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D4}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D4}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D5" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D5}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D5}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D6" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D6}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D6}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D7" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D7}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D7}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D8" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D8}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D8}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D9" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D9}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D9}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="D10" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding D10}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding D10}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+
+                <!--Numeración Fila D-->
+                <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" InputTransparent="True" Margin="27,0,20,0">
+                    <Label Text="1" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="2" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="3" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="4" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="5" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="6" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="7" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="8" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="9" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="10" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                </StackLayout>
+
+                <!-- Fila E -->
+                <Label Grid.Column="0" Grid.Row="4" Text="E" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+                <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Button Text="E1" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E1}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E1}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E2" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E2}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E2}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E3" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E3}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E3}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E4" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E4}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E4}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E5" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E5}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E5}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E6" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E6}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E6}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E7" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E7}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E7}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E8" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E8}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E8}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E9" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E9}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E9}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Text="E10" WidthRequest="25" HeightRequest="25" CornerRadius="5" BackgroundColor="#3b5998" Clicked="OnSeatClicked" BindingContext="{Binding asientos}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button" Binding="{Binding E10}" Value="True">
+                                <Setter Property="BackgroundColor" Value="Red" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Button" Binding="{Binding E10}" Value="False">
+                                <Setter Property="BackgroundColor" Value="#3b5998" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+
+                <!--Numeración Fila E-->
+                <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" InputTransparent="True" Margin="27,0,20,0">
+                    <Label Text="1" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="2" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="3" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="4" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="5" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="6" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="7" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="8" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="9" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                    <Label Text="10" WidthRequest="25" HeightRequest="25" TextColor="white"/>
+                </StackLayout>
+
+            </Grid>
+
+
+            <Grid Margin="30,20,30,0">
+                <Grid.ColumnDefinitions>
+                    <!-- Primera columna ocupará todo el espacio disponible en la izquierda -->
+                    <ColumnDefinition Width="*" />
+                    <!-- Segunda columna tendrá el ancho suficiente para acomodar el número -->
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Primer label alineado a la izquierda -->
+                <Label Grid.Column="0" Text="Total L. (ISV incluido)" 
+                       TextColor="#3b5998"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Start" />
+
+                <!-- Segundo label alineado a la derecha -->
+                <Label Grid.Column="1"
+                       Text="{Binding precio}"
+                       FontAttributes="Bold"
+                       TextColor="#3b5998"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="End" />
+            </Grid>
+
+
+            <StackLayout Margin="30,0,30,20">
+                <Label Text="Asientos: "  FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                <Label x:Name="asientosArreglo" FontSize="12" Text=""  HorizontalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Button Text="Siguiente"
+                Clicked="SiguienteClicked"
+                BackgroundColor="#3b5998"
+                TextColor="White"
+                CornerRadius="30"
+                HeightRequest="50"
+                WidthRequest="200"
+                HorizontalOptions="Center" />
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

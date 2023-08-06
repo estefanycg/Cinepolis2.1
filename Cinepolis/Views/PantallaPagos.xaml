@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepolis.Views.PantallaPagos"
+            BackgroundColor="White"
+             Title="Pagar">
+
+    <!-- Barra de color azul (Dashboard) -->
+    
+       
+
+        
+
+        <!-- Contenedor principal -->
+        <StackLayout Grid.Row="1" Margin="20" VerticalOptions="FillAndExpand" Spacing="10" Padding="0,10,0,0">
+            <!-- Texto Datos de Facturación -->
+            <Label Text="Datos de Facturación" FontSize="Title" TextColor="#152567" HorizontalOptions="CenterAndExpand" />
+
+            <Entry Placeholder="{Binding Nombre}" x:Name="NombresEntry" IsEnabled="False" TextColor="#152567" PlaceholderColor="Gray" FontSize="Small" />
+
+            <Entry Placeholder="{Binding Correo}" x:Name="CorreoEntry" IsEnabled="False" TextColor="#152567" PlaceholderColor="Gray" FontSize="Small" />
+
+            <Entry Placeholder="{Binding Telefono}" x:Name="TelefonoEntry" IsEnabled="False" TextColor="#152567" PlaceholderColor="Gray" FontSize="Small" />
+
+            <Entry Placeholder="{Binding DNI}" x:Name="CedulaEntry" IsEnabled="False" TextColor="#152567" PlaceholderColor="Gray" FontSize="Small" />
+
+            <!-- Términos de política y privacidad -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <RadioButton x:Name="TerminosRadioButton" GroupName="Terminos" TextColor="#152567" />
+                <Label Text="He revisado la orden de Compra, leído y acepto los " TextColor="#152567" HorizontalOptions="Start">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="He revisado la orden de Compra, leído y acepto los   " TextColor="#152567" />
+                            <Span Text="la politica  de manejo de datos y los " TextColor="#152567" />
+                            <Span Text="términos y condiciones." TextColor="#152567" TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTerminosClicked" />
+                                </Span.GestureRecognizers>
+                            </Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label Text="." TextColor="#152567" HorizontalOptions="StartAndExpand" />
+            </StackLayout>
+
+            <!-- Carrito de Supermercado y botón de Pagar -->
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand">
+                <Image Source="https://cdn.icon-icons.com/icons2/1138/PNG/512/1486395300-03-trolley_80567.png" HeightRequest="50" WidthRequest="50" />
+                <Label Text="{Binding Total}" FontSize="Title" VerticalOptions="CenterAndExpand" TextColor="#152567" />
+                <Button Text="Pagar" Clicked="PagoButtonClicked" BackgroundColor="#152567" TextColor="White" HeightRequest="30" WidthRequest="70" CornerRadius="5" />
+            </StackLayout>
+        </StackLayout>
+    
+
+</ContentPage>
