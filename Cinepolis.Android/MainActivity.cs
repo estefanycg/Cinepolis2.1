@@ -16,6 +16,7 @@ namespace Cinepolis.Droid
         {
             base.OnCreate(savedInstanceState);
             NotificationCenter.CreateNotificationChannel();
+
             Rg.Plugins.Popup.Popup.Init(this); // Inicializar Rg.Plugins.Popup
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

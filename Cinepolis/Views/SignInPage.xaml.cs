@@ -64,7 +64,7 @@ namespace Cinepolis
                         if (!string.IsNullOrEmpty(token))
                         {
                             Application.Current.Properties["token"] = token;
-                             await Navigation.PushAsync(new Location());
+                            await Navigation.PushAsync(new Location());
                             NotificationRequest Noti = new NotificationRequest
                             {
 
