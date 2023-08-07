@@ -41,8 +41,7 @@ namespace Cinepolis.Views
             {
                 using (HttpClient httpClient = new HttpClient())
                 {
-                    //httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + Application.Current.Properties["token"]);
-                    httpClient.DefaultRequestHeaders.Add("Authorization", "Token c79975fcb5ee8d521f52daa3fceb9b3008f67ede");
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + (string) Application.Current.Properties["token"]);
                     HttpResponseMessage response = await httpClient.GetAsync("http://64.227.10.233/auth/cliente");
                     if (response.IsSuccessStatusCode)
                     {

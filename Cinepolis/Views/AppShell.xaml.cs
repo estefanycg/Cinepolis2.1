@@ -1,5 +1,4 @@
-﻿
-using Cinepolis.Views;
+﻿using Cinepolis.Views;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;

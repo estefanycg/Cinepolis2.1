@@ -1,6 +1,7 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms.Xaml;
 
 namespace Cinepolis.Views
@@ -8,9 +9,16 @@ namespace Cinepolis.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class IngresarTarjetaPopUp : PopupPage
     {
-        public IngresarTarjetaPopUp()
+        public List<List<int>> golosinas;
+        public double total;
+        public string Mensaje;
+
+        public IngresarTarjetaPopUp(List<List<int>> golosinas_seleccionadas, double totalFacturar, string mensaje)
         {
             InitializeComponent();
+            golosinas = golosinas_seleccionadas;
+            total = totalFacturar;
+            Mensaje = mensaje;
         }
 
         private async void ContinuarPagoButton_Clicked(object sender, EventArgs e)
@@ -22,12 +30,12 @@ namespace Cinepolis.Views
             if (string.IsNullOrWhiteSpace(numeroTarjeta))
             {
                 await DisplayAlert("Advertencia", "Debe ingresar un número de tarjeta para realizar su compra", "Aceptar");
-                return; // No continúa con el procesamiento si no se ingresó un número de tarjeta
+                return;
             }
 
             else
             {
-                var PantallaPagoProductos = new PantallaPagoProductos();
+                var PantallaPagoProductos = new PantallaPagoProductos(golosinas, total, Mensaje);
                 await Navigation.PushAsync(PantallaPagoProductos);
                 await PopupNavigation.Instance.PopAsync();
             }

@@ -60,8 +60,6 @@ namespace Cinepolis.Views
                 string selectedCityName = selectedCity.Nombre;
                 Application.Current.Properties["ciudadNombre"] = selectedCityName;
                 Application.Current.Properties["ciudadId"] = selectedCityId;
-                Application.Current.Properties["token"] = "c79975fcb5ee8d521f52daa3fceb9b3008f67ede";
-
 
                 // Muestra un DisplayAlert con el Id de la ciudad seleccionada
                 // Puedes utilizar el Id y el Nombre de la ciudad como necesites

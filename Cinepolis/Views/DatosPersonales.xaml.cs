@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -31,9 +32,12 @@ namespace Cinepolis.Views
         public string Clasificacion { get; set; } 
         public string Actores { get; set; } 
         public string Sinopsis { get; set; } 
-        public ImageSource Imagen { get; set; } 
+        public ImageSource Imagen { get; set; }
 
-        public DatosPersonales(List<string> lista, int id_horario, int id_pelicula, float asientos_total)
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+
+        public DatosPersonales(List<string> lista, int id_horario, int id_pelicula, float asientos_total, string aPagar)
         {
             InitializeComponent();
             asientos = lista;
@@ -41,6 +45,8 @@ namespace Cinepolis.Views
             Pelicula = id_pelicula;
             Total = asientos_total;
             Fecha = "Lunes, 7/8/2023";
+            totalAPagar.Text = aPagar;
+
 
             CiudadNombre = Application.Current.Properties["ciudadNombre"] as string;
             CiudadId = (int)Application.Current.Properties["ciudadId"];
@@ -53,13 +59,44 @@ namespace Cinepolis.Views
                     Selecciones += seleccion + ", ";
                 }
             }
+            Application.Current.Properties["asientos"] = Selecciones;
+            Application.Current.Properties["total"] = Total;
+            Application.Current.Properties["total"] = aPagar;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             await LoadPelicula();
+            await LoadPerfil();
             BindingContext = this;
+        }
+
+        public async Task LoadPerfil()
+        {
+            try
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + Token);
+                    HttpResponseMessage response = await httpClient.GetAsync("http://64.227.10.233/auth/cliente");
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        var data = JsonConvert.DeserializeObject<dynamic>(jsonResponse);
+                        Nombre = data?.data?.cliente?.first_name;
+                        Apellido = data?.data?.cliente?.last_name;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Failed to fetch perfil from the API", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "An error occurred while fetching cities from the API", "OK");
+            }
         }
 
 
@@ -97,9 +134,12 @@ namespace Cinepolis.Views
                                 {
                                     Hora = (string)horario["hora_inicio"];
                                     idSala = (int)(horario["sala"]["id"]);
+                                    Application.Current.Properties["hora"] = Hora;
+                                    Application.Current.Properties["sala"] = idSala.ToString();
                                 }
                             }
                         }
+                        Application.Current.Properties["titulo"] = Titulo;
                     }
                     else
                     {
@@ -115,7 +155,7 @@ namespace Cinepolis.Views
 
         private void BOnSiguienteButtonClicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new PantallaPagos(Horario, asientos, 500.00f));
+            Navigation.PushAsync(new PantallaPagos(Horario, asientos, Total, totalAPagar.Text));
 
         }
     }

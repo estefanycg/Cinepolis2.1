@@ -8,7 +8,7 @@ namespace Cinepolis.ModelViews
     public  class Golosina : INotifyPropertyChanged
     {
 
-        public string Id { get; set; }
+        public int Id { get; set; }
         public ImageSource ImagenCargada { get; set; }
 
 

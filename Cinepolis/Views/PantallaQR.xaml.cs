@@ -8,11 +8,12 @@ namespace Cinepolis.Views
     public partial class PantallaQR : ContentPage
     {
         ZXingBarcodeImageView qr;
+        string datosQR;
 
-        public PantallaQR()
+        public PantallaQR(string datos)
         {
             InitializeComponent();
-
+            datosQR = datos;
         }
 
         private async void ButtonGenerarQRClicked(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace Cinepolis.Views
             qr.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
             qr.BarcodeOptions.Width = 500;
             qr.BarcodeOptions.Height = 500;
-            qr.BarcodeValue = "https://youtu.be/q1f2vzn8xbA";
+            qr.BarcodeValue = datosQR;
             stKQR.Children.Add(qr);
 
 

@@ -46,7 +46,7 @@
             <!-- Carrito de Supermercado y botón de Pagar -->
             <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand">
                 <Image Source="https://cdn.icon-icons.com/icons2/1138/PNG/512/1486395300-03-trolley_80567.png" HeightRequest="50" WidthRequest="50" />
-                <Label Text="{Binding Total}" FontSize="Title" VerticalOptions="CenterAndExpand" TextColor="#152567" />
+                <Label Text="{Binding aPagar}" FontSize="Title" VerticalOptions="CenterAndExpand" TextColor="#152567" />
                 <Button Text="Pagar" Clicked="PagoButtonClicked" BackgroundColor="#152567" TextColor="White" HeightRequest="30" WidthRequest="70" CornerRadius="5" />
             </StackLayout>
         </StackLayout>

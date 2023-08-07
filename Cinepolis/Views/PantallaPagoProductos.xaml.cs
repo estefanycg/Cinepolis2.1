@@ -19,18 +19,23 @@ namespace Cinepolis.Views
     public partial class PantallaPagoProductos : ContentPage
     {
         public Pagos pago;
-        public float Total { get; set; }
+        public double Total { get; set; }
         public string Nombre { get; set; }
         public string DNI { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
-        public float total;
+        public List<List<int>> golosinas;
+        public double total;
+        public string Mensaje;
 
-        public PantallaPagoProductos()
+        public PantallaPagoProductos(List<List<int>> golosinas_seleccionadas, double totalFacturar, string mensaje)
         {
             InitializeComponent();
             pago = new Pagos();
-            Total = 500.00f;
+            Total = totalFacturar;
+            golosinas = golosinas_seleccionadas;
+            total = totalFacturar;
+            Mensaje = mensaje;
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
@@ -38,12 +43,8 @@ namespace Cinepolis.Views
         {
             base.OnAppearing();
             await LoadPerfil();
-
             BindingContext = this;
         }
-
-
-
 
         public async Task LoadPerfil()
         {
@@ -92,9 +93,8 @@ namespace Cinepolis.Views
 
                 var data = new
                 {
-                    //id_horario,
-                    //asientos,
-                    //total
+                    golosinas,
+                    total
                 };
 
                 string jsonData = JsonConvert.SerializeObject(data);
@@ -103,21 +103,19 @@ namespace Cinepolis.Views
                 {
                     httpClient.BaseAddress = new Uri("http://64.227.10.233/");
                     httpClient.DefaultRequestHeaders.Accept.Clear();
-                    httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + Application.Current.Properties["token"]);
                     httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "transacciones/facturar_boleto");
+                    HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "transacciones/facturar_productos");
                     request.Content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + (string)Application.Current.Properties["token"]);
                     HttpResponseMessage response = await httpClient.SendAsync(request);
                     if (response.IsSuccessStatusCode)
                     {
-                        await DisplayAlert("Pago Realizado", "Se ha realizado su pago con exito!", "Ok");
-                        //await Navigation.PushAsync(new AppShell((int)Application.Current.Properties["ciudadId"], (string)Application.Current.Properties["ciudadNombre"]));
-                        //await Navigation.PushAsync(new CarteleraPage((int)Application.Current.Properties["ciudadId"], (string)Application.Current.Properties["ciudadNombre"]));
-
+                        string mensaje = Nombre + ", gracias por tu compra!" + Mensaje + "\n\nTotal: L." + total.ToString();
+                        await Navigation.PushAsync(new PantallaQR(mensaje));
                     }
                     else
                     {
-                        await DisplayAlert("Proveer todos los datos", "Intente De Nuevo", "OK");
+                        await DisplayAlert("Error al facturar productos", "Intente De Nuevo", "OK");
                     }
                 }
             }

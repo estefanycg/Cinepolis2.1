@@ -188,7 +188,7 @@ namespace Cinepolis.Views
                 }
                 else
                 {
-                    Navigation.PushAsync(new DatosPersonales(asientosSeleccionados, idHorario, pelicula, total));
+                    Navigation.PushAsync(new DatosPersonales(asientosSeleccionados, idHorario, pelicula, total, (cantidadAsientos * precio).ToString()));
                 }
             }
 

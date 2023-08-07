@@ -27,8 +27,9 @@ namespace Cinepolis.Views
         public int id_horario;
         List<string> asientos;
         public float total;
+        public string aPagar { get; set; }
 
-		public PantallaPagos (int horario, List<string> asientosSeleccionado, float totalAsientos)
+		public PantallaPagos (int horario, List<string> asientosSeleccionado, float totalAsientos, string totalAPagar)
 		{
 			InitializeComponent ();
 			pago = new Pagos ();
@@ -37,20 +38,18 @@ namespace Cinepolis.Views
             id_horario = horario;
             asientos = asientosSeleccionado;
             total = totalAsientos;
+            aPagar = totalAPagar;
         }
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             await LoadPerfil();
-
             BindingContext = this;
         }
 
-        
 
-
-            public async Task LoadPerfil(){
+        public async Task LoadPerfil(){
             try
             {
                 using (HttpClient httpClient = new HttpClient())
@@ -89,7 +88,7 @@ namespace Cinepolis.Views
             await Navigation.PushAsync(new TerminosPage());
         }
 
-        private async void PagoButtonClicked(object sender, EventArgs e)
+        public async void PagoButtonClicked(object sender, EventArgs e)
         {
             try
             {
@@ -107,17 +106,15 @@ namespace Cinepolis.Views
                 {
                     httpClient.BaseAddress = new Uri("http://64.227.10.233/");
                     httpClient.DefaultRequestHeaders.Accept.Clear();
-                    httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + Application.Current.Properties["token"]);
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Token " + (string)Application.Current.Properties["token"]);
                     httpClient.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
                     HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "transacciones/facturar_boleto");
                     request.Content = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
                     HttpResponseMessage response = await httpClient.SendAsync(request);
                     if (response.IsSuccessStatusCode)
                     {
-                        await DisplayAlert("Pago Realizado", "Se ha realizado su pago con exito!", "Ok");
-                        //await Navigation.PushAsync(new AppShell((int)Application.Current.Properties["ciudadId"], (string)Application.Current.Properties["ciudadNombre"]));
-                        //await Navigation.PushAsync(new CarteleraPage((int)Application.Current.Properties["ciudadId"], (string)Application.Current.Properties["ciudadNombre"]));
-    
+                        string mensaje = Nombre + ", gracias por tu compra!\n\nPelicula: " + (string)Application.Current.Properties["titulo"] + "\n\nHora: " + (string)Application.Current.Properties["hora"] + "\n\nSala: #" + (string)Application.Current.Properties["sala"] +  "\n\nAsientos: " + (string)Application.Current.Properties["asientos"] + "\n\nTotal: L." + (string)Application.Current.Properties["total"];
+                        await Navigation.PushAsync(new PantallaQR(mensaje));
                     }
                     else
                     {
@@ -129,24 +126,6 @@ namespace Cinepolis.Views
             {
                 Console.WriteLine("Error: " + ex.Message);
             }
-        }
-
-        private void OnPagarButtonClicked(object sender, EventArgs e)
-        {
-            if (TerminosRadioButton.IsChecked)
-            {
-                // Aquí se puede realizar el proceso de pago y mostrar una confirmación o mensaje de éxito
-                // Por ejemplo, mostrar un mensaje emergente con los datos de pago
-                string mensaje = $"Pago realizado:\nNombres: {Nombre}\nCorreo: {Correo}\nTeléfono: {pago.NumeroTelefonico}\nCédula: {pago.CedulaIdentidad}";
-                DisplayAlert("Pago Exitoso", mensaje, "Aceptar");
-            }
-            else
-            {
-                // Si faltan datos o no se han aceptado los términos, mostrar un mensaje de error
-                DisplayAlert("Error", "Por favor, complete todos los campos y acepte los términos para continuar.", "Aceptar");
-            }
-        }
-
-        
+        }        
     }
 }

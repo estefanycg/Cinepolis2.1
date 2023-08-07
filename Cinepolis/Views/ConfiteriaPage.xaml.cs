@@ -12,6 +12,8 @@ namespace Cinepolis.Views
     public partial class ConfiteriaPage : ContentPage
     {
         public List<Golosina> ConfiteriaList { get; set; }
+        public string CiudadNombre { get; set; }
+        public List<List<int>> golosinas;
 
         // Nueva propiedad para el total a pagar
         private double total;
@@ -32,10 +34,24 @@ namespace Cinepolis.Views
         {
             InitializeComponent();
             LoadProductos(); // Llama al método para obtener los productos desde el servidor
-            nombreCiudad.Text = "";
+            CiudadNombre = (string)Application.Current.Properties["ciudadNombre"];
+            golosinas = new List<List<int>>();
             BindingContext = this;
-
         }
+
+
+        public void agregarGolosinas()
+        {
+            foreach (var golosina in ConfiteriaList)
+            {
+                if (golosina.Cantidad > 0)
+                {
+                    List<int> valores = new List<int> { golosina.Id, golosina.Cantidad };
+                    golosinas.Add(valores);
+                }
+            }
+        }
+
 
         private async void LoadProductos()
         {
@@ -85,7 +101,7 @@ namespace Cinepolis.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-
+            agregarGolosinas();
             if (Total <= 0)
             {
                 await DisplayAlert("Sin productos seleccionados", "Debe seleccionar al menos un producto para realizar una compra.", "Aceptar");
@@ -93,7 +109,17 @@ namespace Cinepolis.Views
             else
             {
                 //await Navigation.PushAsync(new PantallaPagoProductos(new List<string> { }, 1, 2, 1.0f));
-                var ingresarTarjetaPopup = new IngresarTarjetaPopUp();
+                string mensajeLista = "";
+
+                foreach (var producto in ConfiteriaList)
+                {
+                    if (producto.Cantidad > 0)
+                    {
+                        mensajeLista += "\n\n" + producto.Nombre + ": Cantidad " + producto.Cantidad;
+                    }
+                }
+
+                var ingresarTarjetaPopup = new IngresarTarjetaPopUp(golosinas, Total, mensajeLista);
                 await PopupNavigation.Instance.PushAsync(ingresarTarjetaPopup);
             }
 
