@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cinepolis.Views.PantallaQR">
+
+    <StackLayout x:Name="stKQR">
+        <Button x:Name="btnGenerarCodigo" Text="Generar" BackgroundColor="#152567" TextColor="White" WidthRequest="200" HeightRequest="60" CornerRadius="30" Clicked="ButtonGenerarQRClicked" Margin="20"/>
+    </StackLayout>
+</ContentPage>

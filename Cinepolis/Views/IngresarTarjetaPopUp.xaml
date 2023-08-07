@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="Cinepolis.Views.IngresarTarjetaPopUp">
+
+    <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Padding="20" BackgroundColor="#80000000">
+        <Label Text="Como último paso, ingrese su tarjeta de crédito a continuación" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+        <Entry x:Name="tarjetaEntry" Placeholder="Número de tarjeta de crédito" BackgroundColor="White" Margin="0,10" />
+        <Button Text="Realizar compra" Clicked="ContinuarPagoButton_Clicked" BackgroundColor="#3b5998" TextColor="White" Margin="0,20" />
+        <Button Text="Cerrar" Clicked="CerrarButton_Clicked" BackgroundColor="Red" TextColor="White" Margin="0,10" />
+    </StackLayout>
+</pages:PopupPage>

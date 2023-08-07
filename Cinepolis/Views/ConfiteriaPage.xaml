@@ -77,7 +77,7 @@
                 <Label Text="Reclamar en" FontSize="18" TextColor="Black" />
 
                 <!-- Texto "Galerias del Valle" -->
-                <Label Text="Galerias del Valle" FontSize="18" TextColor="Black" />
+                <Label x:Name="nombreCiudad"  Text="" FontSize="18" TextColor="Black" />
             </StackLayout>
         </RelativeLayout>
 

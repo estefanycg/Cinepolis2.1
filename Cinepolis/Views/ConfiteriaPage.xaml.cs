@@ -32,7 +32,9 @@ namespace Cinepolis.Views
         {
             InitializeComponent();
             LoadProductos(); // Llama al método para obtener los productos desde el servidor
+            nombreCiudad.Text = "";
             BindingContext = this;
+
         }
 
         private async void LoadProductos()
@@ -83,7 +85,19 @@ namespace Cinepolis.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DatosPersonales(new List<string> { }, 1, 2, 1.0f));
+
+            if (Total <= 0)
+            {
+                await DisplayAlert("Sin productos seleccionados", "Debe seleccionar al menos un producto para realizar una compra.", "Aceptar");
+            }
+            else
+            {
+                //await Navigation.PushAsync(new PantallaPagoProductos(new List<string> { }, 1, 2, 1.0f));
+                var ingresarTarjetaPopup = new IngresarTarjetaPopUp();
+                await PopupNavigation.Instance.PushAsync(ingresarTarjetaPopup);
+            }
+
+            
         }
 
         private async void CarritoIcon_Clicked(object sender, EventArgs e)
