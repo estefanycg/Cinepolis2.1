@@ -4,6 +4,7 @@ using Xamarin.Forms;
 //using Cinepolis.Servicios;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Plugin.LocalNotification;
 
 namespace Cinepolis
 {
@@ -64,6 +65,15 @@ namespace Cinepolis
                         {
                             Application.Current.Properties["token"] = token;
                              await Navigation.PushAsync(new Location());
+                            NotificationRequest Noti = new NotificationRequest
+                            {
+
+                                Title = "Cinepolis",
+                                Description = "¡Te has registrado exitosamente en el Club Cinepolis! " +
+                                "Disfruta de beneficios exclusivos, promociones y estrenos de películas. " +
+                                "¡Gracias por unirte a nuestra comunidad cinéfila!"
+                            };
+                            NotificationCenter.Current.Show(Noti);
                         }
                     }
                     else
