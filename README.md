@@ -1,4 +1,4 @@
-# Aplicación Cinépolis - Grupo #7 - Programación Móvil II
+# Aplicación Cinépolis - Grupo #1 - Programación Móvil II
 
 ## INTEGRANTES
 - Luis Adolfo Rodriguez
