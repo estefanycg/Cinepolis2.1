@@ -119,6 +119,14 @@ namespace Cinepolis.Views
                     }
                 }
 
+                if ((bool)Application.Current.Properties["invitado"])
+                {
+                    await DisplayAlert("Estas como invitado", "Por favor proveer tus credenciales para seguir", "Ok");
+                    Navigation.PushAsync(new SignInPage());
+                    return;
+                }
+
+
                 var ingresarTarjetaPopup = new IngresarTarjetaPopUp(golosinas, Total, mensajeLista);
                 await PopupNavigation.Instance.PushAsync(ingresarTarjetaPopup);
             }

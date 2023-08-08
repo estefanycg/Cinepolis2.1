@@ -28,6 +28,7 @@ namespace Cinepolis.Views
         List<string> asientos;
         public float total;
         public string aPagar { get; set; }
+        public int id_sala;
 
 		public PantallaPagos (int horario, List<string> asientosSeleccionado, float totalAsientos, string totalAPagar)
 		{
@@ -39,6 +40,7 @@ namespace Cinepolis.Views
             asientos = asientosSeleccionado;
             total = totalAsientos;
             aPagar = totalAPagar;
+            id_sala = (int)Application.Current.Properties["id_sala"];
         }
 
         protected override async void OnAppearing()
@@ -97,7 +99,8 @@ namespace Cinepolis.Views
                 {
                     id_horario,
                     asientos,
-                    total
+                    total,
+                    id_sala
                 };
 
                 string jsonData = JsonConvert.SerializeObject(data);

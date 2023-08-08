@@ -5,7 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using FFImageLoading.Forms.Platform;
-using Plugin.LocalNotification;
+//using Plugin.LocalNotification;
 
 namespace Cinepolis.Droid
 {
@@ -15,7 +15,7 @@ namespace Cinepolis.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            NotificationCenter.CreateNotificationChannel();
+            //NotificationCenter.CreateNotificationChannel();
 
             Rg.Plugins.Popup.Popup.Init(this); // Inicializar Rg.Plugins.Popup
 

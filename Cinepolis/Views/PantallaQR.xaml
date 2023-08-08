@@ -5,5 +5,19 @@
 
     <StackLayout x:Name="stKQR">
         <Button x:Name="btnGenerarCodigo" Text="Generar" BackgroundColor="#152567" TextColor="White" WidthRequest="200" HeightRequest="60" CornerRadius="30" Clicked="ButtonGenerarQRClicked" Margin="20"/>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="2" Padding="20,0">
+                <Label Text="Por favor, muestre este código QR para validar su compra en las instalaciones del cine." TextColor="Black" FontSize="16" VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="2" Padding="20,0">
+                <Label Text="Este código es equivalente a una factura puede tomar una captura del mismo." TextColor="Black" FontSize="16" VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="2" Padding="20,0">
+                <Label Text="¡ALERTA!" TextColor="Red" FontSize="16" VerticalOptions="Center" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="2" Padding="20,0">
+                <Label Text="Para acceder a nuestras instalaciones y disfrutar de tu experiencia cinematográfica, es imprescindible que presentes tu carné de identificación junto con la factura QR generada al momento de adquirir tu boleto." TextColor="Red" FontSize="16" VerticalOptions="Center" />
+            </StackLayout>
+
     </StackLayout>
 </ContentPage>

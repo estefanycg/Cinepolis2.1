@@ -136,6 +136,7 @@ namespace Cinepolis.Views
                                     idSala = (int)(horario["sala"]["id"]);
                                     Application.Current.Properties["hora"] = Hora;
                                     Application.Current.Properties["sala"] = idSala.ToString();
+                                    Application.Current.Properties["id_sala"] = idSala;
                                 }
                             }
                         }

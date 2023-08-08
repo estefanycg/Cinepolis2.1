@@ -12,26 +12,56 @@
             </StackLayout>
 
             <StackLayout  Spacing="5" Padding="5">
-                <StackLayout HorizontalOptions="Start"  Padding="5">
-                    <Label Text="Seleccionar una Ciudad:" TextColor="Black" FontSize="20" HorizontalOptions="Center" />
-                </StackLayout>
-                <Frame Padding="5" Margin="0,10,0,10" HeightRequest="40" CornerRadius="5" HasShadow="True">
-                    <StackLayout Orientation="Horizontal" Spacing="5">
-                        <ffimageloading:SvgCachedImage Source="ubi.svg" HeightRequest="25" WidthRequest="25" VerticalOptions="Center" />
-                        <Picker x:Name="genderPicker" HorizontalOptions="FillAndExpand">
-                        <Picker.Items>
-                                <x:String>San Pedro Sula</x:String>
-                                <x:String>Tegucigalpa</x:String>
-                            </Picker.Items>
-                        </Picker>
+                <!-- Cabecera con información de reclamación y ubicación -->
+                <RelativeLayout Padding="10" BackgroundColor="White">
+                    <!-- Icono de ubicación -->
+                    <Image x:Name="ubicacionImage" Source="ubicacion.png" HeightRequest="30" WidthRequest="30"
+                       RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=10}"
+                       RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=10}" />
+
+                    <!-- StackLayout para los textos "Reclamar en" y "Galerias del Valle" -->
+                    <StackLayout Orientation="Vertical"
+                             RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=ubicacionImage, Property=Width, Factor=1, Constant=10}"
+                             RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=10}">
+                        <!-- Texto "Reclamar en" -->
+                        <Label Text="Ubicacion Seleccionada:" FontSize="18" TextColor="Black" />
+
+                        <!-- Texto "Galerias del Valle" -->
+                        <Label x:Name="nombreCiudad"  Text="{Binding CiudadNombre}" FontSize="18" TextColor="Black" />
                     </StackLayout>
-                </Frame>
+                </RelativeLayout>
 
                 <StackLayout HorizontalOptions="Start"  Padding="5">
                     <Label Text="Historial de compras" TextColor="Black" FontSize="20" HorizontalOptions="Center" />
                 </StackLayout>
-                <Frame HasShadow="True" BorderColor="DarkGray" CornerRadius="10" Margin="5"  HeightRequest="400" VerticalOptions="Center">
-           
+                <Frame HasShadow="True" BorderColor="DarkGray" CornerRadius="10" Margin="5" HeightRequest="400" VerticalOptions="Center">
+                    <ListView x:Name="FacturasListView" HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame Margin="10" Padding="5" BackgroundColor="White" HeightRequest="100" CornerRadius="5" HasShadow="True">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Padding="10">
+                                                <!-- Aquí puedes agregar los controles y enlaces para mostrar los datos de cada elemento -->
+                                                <Label Text="{Binding numFactura}" Grid.Row="0" />
+                                                <Label Text="{Binding monto}" Grid.Row="0" Grid.Column="1" />
+                                                <Label Text="{Binding fecha}" Grid.Row="0" Grid.Column="1" />
+                                                <!-- Agrega más controles según tus necesidades -->
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
                 </Frame>
             </StackLayout>
         </StackLayout>

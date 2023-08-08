@@ -28,6 +28,7 @@ namespace Cinepolis.Views
         private async void CarteleraButtonClicked(object sender, EventArgs e)
         {
             InvitadoStatus.Value = true;
+            Application.Current.Properties["invitado"] = true;
             await Navigation.PushAsync(new Location());
 
         }
